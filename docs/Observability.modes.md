@@ -4,7 +4,7 @@
 - **Status**: Standard / Stable
 - **Version**: 1.0.0
 - **Date**: 2026-09-14
-- **Context**: Full Agent Stack Initiative
+- **Context**: AllasCode Architecture
 - **Pattern Type**: Observability Architecture & Interactive Runtime Protocol
 
 ## 📋 Visão Geral
