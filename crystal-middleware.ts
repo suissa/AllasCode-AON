@@ -2,8 +2,7 @@
  * CrystalBox Middleware - Middleware para modo de observabilidade interativa
  */
 
-import { Request, Response, NextFunction, RequestHandler } from '../types.js';
-import { AONRequest, AONResponse, AONConfig } from './types.js';
+import { Request, Response, NextFunction, RequestHandler, AONRequest, AONResponse, AONConfig } from './types.js';
 import { createCrystalBoxWriter, CrystalBoxOptions } from './crystal-box.js';
 import { createInteractiveHealer, InteractiveHealerConfig } from './interactive-healer.js';
 
@@ -326,9 +325,15 @@ export function withCrystalBox(handler: (req: CrystalBoxRequest, res: AONRespons
 
       const result = await handler(crystalReq, crystalRes);
       
-      // Se o handler retornou algo e não enviou resposta ainda
       if (result !== undefined && !res.headersSent) {
-        crystalRes.json(result);
+        if (typeof crystalRes.json === 'function') {
+          crystalRes.json(result);
+        } else {
+          if (!res.headersSent) {
+            res.setHeader('content-type', 'application/json');
+          }
+          res.end(JSON.stringify(result));
+        }
       }
 
     } catch (error) {

@@ -26,7 +26,7 @@ export interface HealingStats {
 }
 
 export class AONHealerImpl implements AONHealer {
-  private writer: AONStreamWriter;
+  private writer?: AONStreamWriter;
   private actions: Map<string, HealingAction> = new Map();
   private stats: HealingStats;
   private config: {
@@ -35,7 +35,7 @@ export class AONHealerImpl implements AONHealer {
     debug: boolean;
   };
 
-  constructor(writer: AONStreamWriter, config?: Partial<AONHealerImpl['config']>) {
+  constructor(writer?: AONStreamWriter, config?: Partial<AONHealerImpl['config']>) {
     this.writer = writer;
     this.config = {
       maxRetries: 3,
@@ -67,7 +67,7 @@ export class AONHealerImpl implements AONHealer {
         const success = Math.random() > 0.2; // 80% de sucesso
         
         if (success && metadata?.provider) {
-          this.writer.status(`Token renovado com sucesso via ${metadata.provider}`);
+          this.writer?.status(`Token renovado com sucesso via ${metadata.provider}`);
         }
         
         return success;
@@ -84,7 +84,7 @@ export class AONHealerImpl implements AONHealer {
         const attempt = metadata?.attempt || 1;
         const delay = Math.min(1000 * Math.pow(2, attempt - 1), 5000);
         
-        this.writer.status(`Aguardando ${delay}ms antes de retry (tentativa ${attempt})`);
+        this.writer?.status(`Aguardando ${delay}ms antes de retry (tentativa ${attempt})`);
         await this.simulateDelay(delay);
         
         // Simula sucesso crescente com tentativas
@@ -107,7 +107,7 @@ export class AONHealerImpl implements AONHealer {
         const issue = metadata?.issue;
         
         if (fixableIssues.includes(issue)) {
-          this.writer.status(`Schema corrigido: ${issue} → aplicando transformação automática`);
+          this.writer?.status(`Schema corrigido: ${issue} → aplicando transformação automática`);
           return true;
         }
         
@@ -124,14 +124,14 @@ export class AONHealerImpl implements AONHealer {
       handler: async (metadata) => {
         const connectionType = metadata?.type || 'primary';
         
-        this.writer.status(`Reestabelecendo conexão ${connectionType}...`);
+        this.writer?.status(`Reestabelecendo conexão ${connectionType}...`);
         await this.simulateDelay(2000);
         
         // Simula recuperação de conexão
         const success = Math.random() > 0.3; // 70% de sucesso
         
         if (success) {
-          this.writer.status(`Conexão ${connectionType} reestabelecida com sucesso`);
+          this.writer?.status(`Conexão ${connectionType} reestabelecida com sucesso`);
         }
         
         return success;
@@ -148,7 +148,7 @@ export class AONHealerImpl implements AONHealer {
         const retryAfter = metadata?.retryAfter || 1000;
         const service = metadata?.service || 'external_api';
         
-        this.writer.status(`Rate limit atingido em ${service}. Aguardando ${retryAfter}ms...`);
+        this.writer?.status(`Rate limit atingido em ${service}. Aguardando ${retryAfter}ms...`);
         await this.simulateDelay(retryAfter);
         
         return true; // Rate limit sempre pode ser "curado" esperando
@@ -170,7 +170,7 @@ export class AONHealerImpl implements AONHealer {
     const action = this.actions.get(actionName);
     
     if (!action) {
-      this.writer.healing(
+      this.writer?.healing(
         actionName,
         `Ação de healing não encontrada: ${actionName}`,
         'critical'
@@ -184,7 +184,7 @@ export class AONHealerImpl implements AONHealer {
     const severity = this.determineSeverity(actionName, metadata);
     
     // Envia evento de healing
-    this.writer.healing(
+    this.writer?.healing(
       actionName,
       description || action.description,
       severity,
@@ -208,7 +208,7 @@ export class AONHealerImpl implements AONHealer {
           if (success) {
             this.updateStats(actionName, 'success');
             
-            this.writer.healing(
+            this.writer?.healing(
               actionName,
               `Healing bem-sucedido na tentativa ${attempt}`,
               'low',
@@ -219,7 +219,7 @@ export class AONHealerImpl implements AONHealer {
           }
           
           if (attempt < maxRetries) {
-            this.writer.status(`Healing falhou (tentativa ${attempt}/${maxRetries}). Tentando novamente...`);
+            this.writer?.status(`Healing falhou (tentativa ${attempt}/${maxRetries}). Tentando novamente...`);
             await this.simulateDelay(500 * attempt); // Backoff simples
           }
           
@@ -227,14 +227,14 @@ export class AONHealerImpl implements AONHealer {
           const errorMessage = error instanceof Error ? error.message : String(error);
           
           if (attempt < maxRetries) {
-            this.writer.healing(
+            this.writer?.healing(
               actionName,
               `Erro na tentativa ${attempt}: ${errorMessage}. Tentando novamente...`,
               'medium',
               { attempt, error: errorMessage }
             );
           } else {
-            this.writer.healing(
+            this.writer?.healing(
               actionName,
               `Healing falhou após ${maxRetries} tentativas: ${errorMessage}`,
               'critical',
@@ -252,7 +252,7 @@ export class AONHealerImpl implements AONHealer {
       this.updateStats(actionName, 'failure');
       
       const errorMessage = error instanceof Error ? error.message : String(error);
-      this.writer.healing(
+      this.writer?.healing(
         actionName,
         `Erro crítico no healing: ${errorMessage}`,
         'critical',
@@ -340,6 +340,6 @@ export class AONHealerImpl implements AONHealer {
 /**
  * Factory para criar healers
  */
-export function createAONHealer(writer: AONStreamWriter, config?: any): AONHealer {
+export function createAONHealer(writer?: AONStreamWriter, config?: any): AONHealer {
   return new AONHealerImpl(writer, config);
 }

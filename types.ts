@@ -148,9 +148,32 @@ export interface AONHealer {
 
 // =========================================
 // EXTENSÕES DE REQUEST/RESPONSE
-// =========================================
+import type { IncomingMessage, ServerResponse } from "node:http";
 
-import { Request, Response } from "../types.js";
+export type NextFunction = (err?: any) => void | Promise<void>;
+
+export interface Request extends IncomingMessage {
+  params?: Record<string, any>;
+  query?: Record<string, any>;
+  body?: any;
+  headers: IncomingMessage["headers"];
+  url?: string;
+  method?: string;
+  [key: string]: any;
+}
+
+export interface Response extends ServerResponse {
+  json?: (data: any) => Response | void;
+  send?: (data: any) => Response | void;
+  status?: (statusCode: number) => Response;
+  [key: string]: any;
+}
+
+export type RequestHandler = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => void | Promise<void>;
 
 export interface AONRequest extends Request {
   /** Contexto AON da requisição */

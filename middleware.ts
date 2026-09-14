@@ -4,8 +4,11 @@
  */
 
 import { randomUUID } from 'node:crypto';
-import { Request, Response, NextFunction, RequestHandler } from '../types.js';
 import { 
+  Request, 
+  Response, 
+  NextFunction, 
+  RequestHandler,
   AONConfig, 
   AONContext, 
   AONRequest, 
@@ -151,17 +154,26 @@ function interceptResponse(req: AONRequest, res: AONResponse, context: AONContex
   const originalSend = res.send;
 
   // Intercepta res.json()
-  res.json = function(data: any) {
+  res.json = function(this: any, data: any) {
     finalizeAONResponse(req, res, context, data);
-    return originalJson.call(this, data);
+    if (originalJson) {
+      return originalJson.call(this, data);
+    }
+    if (!res.headersSent) {
+      res.setHeader('content-type', 'application/json');
+    }
+    return res.end(JSON.stringify(data));
   };
 
   // Intercepta res.send()
-  res.send = function(data: any) {
+  res.send = function(this: any, data: any) {
     if (typeof data === 'object') {
       finalizeAONResponse(req, res, context, data);
     }
-    return originalSend.call(this, data);
+    if (originalSend) {
+      return originalSend.call(this, data);
+    }
+    return res.end(typeof data === 'string' ? data : JSON.stringify(data));
   };
 
   // Intercepta res.end() como fallback
@@ -275,9 +287,15 @@ export function withAON(handler: (req: AONRequest, res: AONResponse) => Promise<
 
       const result = await handler(aonReq, aonRes);
       
-      // Se o handler retornou algo e não enviou resposta ainda
       if (result !== undefined && !res.headersSent) {
-        res.json(result);
+        if (typeof res.json === 'function') {
+          res.json(result);
+        } else {
+          if (!res.headersSent) {
+            res.setHeader('content-type', 'application/json');
+          }
+          res.end(JSON.stringify(result));
+        }
       }
 
     } catch (error) {

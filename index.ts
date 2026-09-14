@@ -53,7 +53,11 @@ export type {
   AONHealingEvent,
   AONStatusEvent,
   AONResultEvent,
-  AONErrorEvent
+  AONErrorEvent,
+  Request,
+  Response,
+  NextFunction,
+  RequestHandler
 } from './types.js';
 
 // Utilitários
