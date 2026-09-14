@@ -9,7 +9,7 @@
 
 ## 📋 Visão Geral
 
-O PureCore Apify implementa múltiplos modos de observabilidade, evoluindo do conceito tradicional de **Black Box** e **Glass Box** para o inovador **CrystalBox**, que oferece observabilidade em tempo real com interatividade e self-healing automático.
+O AllasCode Platform implementa múltiplos modos de observabilidade, evoluindo do conceito tradicional de **Black Box** e **Glass Box** para o inovador **CrystalBox**, que oferece observabilidade em tempo real com interatividade e self-healing automático.
 
 ## 🔍 Modos de Observabilidade
 
@@ -67,7 +67,7 @@ sequenceDiagram
 - ❌ Apenas observação passiva
 - ❌ Sem interação durante o processo
 
-### 3. ❄️👁️ CrystalBox Mode (Inovação PureCore)
+### 3. ❄️👁️ CrystalBox Mode (Inovação AllasCode)
 **Header**: `Accept: application/x-ndjson` + `X-Crystal-Mode: interactive`
 
 ```mermaid

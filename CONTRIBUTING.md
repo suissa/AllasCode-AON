@@ -1,6 +1,6 @@
-# Contributing to @purecore/aon
+# Contributing to @allascode.institute/aon
 
-Thank you for your interest in contributing to **@purecore/aon**! This project is the official reference implementation of the **Adaptive Observability Negotiation Protocol (AONP v1.0.0)** and the **CrystalBox Interactive Healing** runtime engine.
+Thank you for your interest in contributing to **@allascode.institute/aon**! This project is the official reference implementation of the **Adaptive Observability Negotiation Protocol (AONP v1.0.0)** and the **CrystalBox Interactive Healing** runtime engine, and a foundational pillar of the **AllasCode Architecture** published by **AllasCode.Institute**.
 
 ## Code of Conduct
 
@@ -18,8 +18,8 @@ All contributors are expected to adhere to our [Code of Conduct](./CODE_OF_CONDU
 
 1. Fork and clone the repository:
    ```bash
-   git clone https://github.com/purecore/aon.git
-   cd aon
+   git clone git@github.com:suissa/AllasCode-AON.git
+   cd AllasCode-AON
    ```
 
 2. If using Jujutsu (recommended by our team):
@@ -43,7 +43,7 @@ All contributors are expected to adhere to our [Code of Conduct](./CODE_OF_CONDU
 
 ### Zero Runtime Dependencies Principle
 
-The `@purecore/aon` core package enforces a **strict zero-runtime-dependency** policy.
+The `@allascode.institute/aon` core package enforces a **strict zero-runtime-dependency** policy.
 - All core HTTP parsing, stream writing, and healing coordination MUST rely exclusively on standard Node.js libraries (`node:http`, `node:crypto`, `node:stream`).
 - Do not introduce third-party runtime dependencies into the core package.
 - Framework-specific adapters (Express, Fastify, Hono) should either be lightweight optional peer integrations or isolated sub-modules.

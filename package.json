@@ -1,7 +1,7 @@
 {
-  "name": "@purecore/aon",
+  "name": "@allascode.institute/aon",
   "version": "1.0.0",
-  "description": "Adaptive Observability Negotiation Protocol (AONP) and CrystalBox interactive runtime self-healing engine.",
+  "description": "Adaptive Observability Negotiation Protocol (AONP) and CrystalBox interactive runtime self-healing engine. A foundational pillar of the AllasCode Architecture.",
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -35,6 +35,8 @@
     "prepublishOnly": "npm run typecheck && npm run test && npm run build"
   },
   "keywords": [
+    "allascode",
+    "allascode-institute",
     "aon",
     "aonp",
     "rfc",
@@ -49,16 +51,16 @@
     "content-negotiation",
     "full-agent-stack"
   ],
-  "author": "PureCore Team",
+  "author": "AllasCode.Institute",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/purecore/aon.git"
+    "url": "git+https://github.com/suissa/AllasCode-AON.git"
   },
   "bugs": {
-    "url": "https://github.com/purecore/aon/issues"
+    "url": "https://github.com/suissa/AllasCode-AON/issues"
   },
-  "homepage": "https://github.com/purecore/aon#readme",
+  "homepage": "https://github.com/suissa/AllasCode-AON#readme",
   "engines": {
     "node": ">=18.0.0"
   },

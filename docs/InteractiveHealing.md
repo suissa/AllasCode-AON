@@ -9,7 +9,7 @@
 
 ## 📋 Visão Geral
 
-O **Interactive Healing** é o sistema inovador de auto-cura colaborativa implementado no **❄️👁️ CrystalBox Mode** do PureCore Apify. Diferente de sistemas tradicionais de infraestrutura, este é o primeiro sistema de **healing em tempo de execução** que especializa o conceito **Human-in-the-loop** em duas modalidades distintas e complementares.
+O **Interactive Healing** é o sistema inovador de auto-cura colaborativa implementado no **❄️👁️ CrystalBox Mode** do AllasCode Platform. Diferente de sistemas tradicionais de infraestrutura, este é o primeiro sistema de **healing em tempo de execução** que especializa o conceito **Human-in-the-loop** em duas modalidades distintas e complementares.
 
 ## 🧠 Especialização Inédita: Human-in-the-loop Especializado
 

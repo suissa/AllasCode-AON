@@ -1,13 +1,25 @@
-# @purecore/aon (Português)
+# @allascode.institute/aon (Português)
 
-[![npm version](https://img.shields.io/npm/v/@purecore/aon.svg?style=flat-square)](https://www.npmjs.com/package/@purecore/aon)
+[![npm version](https://img.shields.io/npm/v/@allascode.institute/aon.svg?style=flat-square)](https://www.npmjs.com/package/@allascode.institute/aon)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](./LICENSE)
 [![RFC-0001: AONP v1.0.0](https://img.shields.io/badge/RFC--0001-AONP%20v1.0.0-success.svg?style=flat-square)](./docs/AONP.md)
 [![Zero Runtime Dependencies](https://img.shields.io/badge/dependencies-0%20runtime-brightgreen.svg?style=flat-square)](#)
+[![AllasCode Institute](https://img.shields.io/badge/AllasCode-Architecture%20Pillar-purple.svg?style=flat-square)](https://github.com/suissa/AllasCode-AON)
 
-> **Adaptive Observability Negotiation Protocol (AONP v1.0.0)** e motor de auto-cura interativa em tempo de execução **CrystalBox** para backends de IA Agêntica e APIs modernas.
+> **Adaptive Observability Negotiation Protocol (AONP v1.0.0)** e motor de auto-cura interativa em tempo de execução **CrystalBox** para backends de IA Agêntica e APIs modernas.  
+> **Componente fundamental da Arquitetura / Framework / Plataforma AllasCode, lançado pelo [AllasCode.Institute](https://github.com/suissa/AllasCode-AON).**
 
-O `@purecore/aon` transforma APIs tradicionais opacas ("Caixas Pretas") em sistemas transparentes, observáveis e auto-curáveis. Ele permite que clientes—como Agentes Autônomos de IA, orquestradores de LLM, dashboards de SRE e aplicações web—negociem dinamicamente o nível de observabilidade da execução sobre a mesma conexão HTTP utilizando Content Negotiation padrão (RFC 7231).
+O `@allascode.institute/aon` transforma APIs tradicionais opacas ("Caixas Pretas") em sistemas transparentes, observáveis e auto-curáveis. Ele permite que clientes—como Agentes Autônomos de IA, orquestradores de LLM, dashboards de SRE e aplicações web—negociem dinamicamente o nível de observabilidade da execução sobre a mesma conexão HTTP utilizando Content Negotiation padrão (RFC 7231).
+
+---
+
+## 🏛️ Integração com a Arquitetura AllasCode
+
+A **Arquitetura AllasCode** é o paradigma de desenvolvimento para sistemas agênticos autônomos, orientados a intenção (Intent-Driven), zero-trust e colaborativos:
+
+1. **APIs Adaptativas**: Interfaces capazes de desambiguação semântica de intenções e auto-cura proativa em tempo de execução.
+2. **Cognição Transparente**: Agentes de IA e operadores humanos obtêm visibilidade imediata do fluxo de raciocínio e recuperação sem quebra de contratos HTTP REST tradicionais.
+3. **Resiliência Colaborativa (CrystalBox)**: Quando o self-healing automático atinge seus limites, a transação não falha abruptamente — ela escala para intervenção humana em tempo real (Human-in-the-loop / Human-Dev-in-the-loop).
 
 ---
 
@@ -42,14 +54,14 @@ O `@purecore/aon` transforma APIs tradicionais opacas ("Caixas Pretas") em siste
 ### Instalação
 
 ```bash
-npm install @purecore/aon
+npm install @allascode.institute/aon
 ```
 
 ### Exemplo de Uso com Express
 
 ```typescript
 import express from 'express';
-import { aonMiddleware, withAON } from '@purecore/aon';
+import { aonMiddleware, withAON } from '@allascode.institute/aon';
 
 const app = express();
 
@@ -91,11 +103,12 @@ app.listen(3000, () => {
 
 ## 📜 Especificações Oficiais (RFCs)
 
-O `@purecore/aon` é a implementação canônica de referência das seguintes especificações:
+O `@allascode.institute/aon` é a implementação canônica de referência das seguintes especificações:
 
 - [RFC-0001: Adaptive Observability Negotiation Protocol (AONP v1.0.0)](./docs/AONP.md)
 - [RFC-0004: Observability Modes & CrystalBox Specification](./docs/Observability.modes.md)
 - [RFC-0005: Interactive Runtime Healing Specification (IRH)](./docs/InteractiveHealing.md)
+- [ADR-0001: Arquitetura com Zero Runtime Dependencies](./docs/adr/0001-zero-runtime-dependencies-core.md)
 - [Glossário Ubíquo do Domínio](./CONTEXT.md)
 
 ---
@@ -105,6 +118,9 @@ O `@purecore/aon` é a implementação canônica de referência das seguintes es
 Contribuições são muito bem-vindas! Consulte o [Guia de Contribuição](./CONTRIBUTING.md) e o [Código de Conduta](./CODE_OF_CONDUCT.md).
 
 ```bash
+git clone git@github.com:suissa/AllasCode-AON.git
+cd AllasCode-AON
+jj git init --colocated
 npm install
 npm run typecheck
 npm test
@@ -115,4 +131,4 @@ npm run build
 
 ## 📄 Licença
 
-[MIT](./LICENSE) © 2026 PureCore Team & Contributors
+[MIT](./LICENSE) © 2026 [AllasCode.Institute](https://github.com/suissa/AllasCode-AON) & Contributors

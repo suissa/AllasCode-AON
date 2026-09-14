@@ -1,14 +1,27 @@
-# @purecore/aon
+# @allascode.institute/aon
 
-[![npm version](https://img.shields.io/npm/v/@purecore/aon.svg?style=flat-square)](https://www.npmjs.com/package/@purecore/aon)
+[![npm version](https://img.shields.io/npm/v/@allascode.institute/aon.svg?style=flat-square)](https://www.npmjs.com/package/@allascode.institute/aon)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](./LICENSE)
 [![RFC-0001: AONP v1.0.0](https://img.shields.io/badge/RFC--0001-AONP%20v1.0.0-success.svg?style=flat-square)](./docs/AONP.md)
 [![Zero Runtime Dependencies](https://img.shields.io/badge/dependencies-0%20runtime-brightgreen.svg?style=flat-square)](#)
-[![Node.js CI](https://img.shields.io/badge/build-passing-brightgreen.svg?style=flat-square)](#)
+[![AllasCode Institute](https://img.shields.io/badge/AllasCode-Architecture%20Pillar-purple.svg?style=flat-square)](https://github.com/suissa/AllasCode-AON)
 
-> **Adaptive Observability Negotiation Protocol (AONP v1.0.0)** and **CrystalBox Interactive Runtime Healing** engine for Agentic AI backends and modern HTTP APIs.
+> **Adaptive Observability Negotiation Protocol (AONP v1.0.0)** and **CrystalBox Interactive Runtime Healing** engine for Agentic AI backends and modern HTTP APIs.  
+> **A foundational pillar of the AllasCode Architecture, Framework & Platform, published by [AllasCode.Institute](https://github.com/suissa/AllasCode-AON).**
 
-`@purecore/aon` transforms traditional opaque "Black Box" APIs into transparent, observable, and self-healing systems. It enables clients—such as Autonomous AI Agents, LLM toolcall executors, SRE dashboards, and web applications—to dynamically negotiate execution observability over a single HTTP connection using standard Content Negotiation (RFC 7231).
+`@allascode.institute/aon` transforms traditional opaque "Black Box" APIs into transparent, observable, and self-healing systems. It enables clients—such as Autonomous AI Agents, LLM toolcall executors, SRE dashboards, and web applications—to dynamically negotiate execution observability over a single HTTP connection using standard Content Negotiation (RFC 7231).
+
+---
+
+## 🏛️ AllasCode Architecture Integration
+
+The **AllasCode Architecture** is an advanced paradigm for autonomous, intent-driven, zero-trust, and collaborative agentic systems. In the AllasCode vision:
+
+1. **APIs are not static pipes**: They are adaptive interfaces capable of cognitive intent disambiguation and active runtime self-healing.
+2. **Transparent Cognition**: Autonomous agents and human supervisors need visibility into intermediate execution steps without breaking standard HTTP contracts.
+3. **Collaborative Resilience (CrystalBox)**: When autonomous healing exhausts its thresholds, execution does not simply fail—it enters an interactive human-in-the-loop state to resolve anomalies collaboratively.
+
+`@allascode.institute/aon` serves as the universal observability and runtime healing foundation across the entire AllasCode ecosystem.
 
 ---
 
@@ -62,14 +75,14 @@ graph LR
 ### Installation
 
 ```bash
-npm install @purecore/aon
+npm install @allascode.institute/aon
 ```
 
 ### Basic Server Usage (Express / Connect)
 
 ```typescript
 import express from 'express';
-import { aonMiddleware, withAON } from '@purecore/aon';
+import { aonMiddleware, withAON } from '@allascode.institute/aon';
 
 const app = express();
 
@@ -85,7 +98,7 @@ app.get('/api/v1/users/:id', withAON(async (req, res, writer, healer) => {
   writer.status('Connecting to database replica...', 120);
 
   // Simulate automated healing if an issue occurs
-  const healed = await healer.heal(
+  await healer.heal(
     'recover_db_connection',
     'Primary database connection reset, switching to replica pool',
     { replica: 'us-east-1b' }
@@ -146,7 +159,7 @@ curl -N -H "Accept: application/x-ndjson" http://localhost:3000/api/v1/users/123
 Enable interactive collaborative self-healing with `X-Crystal-Mode: interactive`:
 
 ```typescript
-import { crystalBoxMiddleware, withCrystalBox, requestInteractiveHealing } from '@purecore/aon';
+import { crystalBoxMiddleware, withCrystalBox, requestInteractiveHealing } from '@allascode.institute/aon';
 
 app.use(crystalBoxMiddleware());
 
@@ -176,11 +189,12 @@ app.post('/api/v1/checkout', withCrystalBox(async (req, res) => {
 
 ## 📜 Official Specifications & RFCs
 
-`@purecore/aon` is the canonical reference implementation of the following open standards:
+`@allascode.institute/aon` is the canonical reference implementation of the following open standards:
 
 - [RFC-0001: Adaptive Observability Negotiation Protocol (AONP v1.0.0)](./docs/AONP.md)
 - [RFC-0004: Observability Modes & CrystalBox Specification](./docs/Observability.modes.md)
 - [RFC-0005: Interactive Runtime Healing Specification (IRH)](./docs/InteractiveHealing.md)
+- [ADR-0001: Zero Runtime Dependencies Architecture](./docs/adr/0001-zero-runtime-dependencies-core.md)
 - [Ubiquitous Glossary (Domain Model)](./CONTEXT.md)
 
 ---
@@ -192,6 +206,9 @@ Contributions are welcome! Please read our [Contributing Guide](./CONTRIBUTING.m
 We use Jujutsu (`jj`) and Git colocated repositories, and run tests with Node.js native test runner:
 
 ```bash
+git clone git@github.com:suissa/AllasCode-AON.git
+cd AllasCode-AON
+jj git init --colocated
 npm install
 npm run typecheck
 npm test
@@ -202,4 +219,4 @@ npm run build
 
 ## 📄 License
 
-[MIT](./LICENSE) © 2026 PureCore Team & Contributors
+[MIT](./LICENSE) © 2026 [AllasCode.Institute](https://github.com/suissa/AllasCode-AON) & Contributors

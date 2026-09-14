@@ -1,6 +1,6 @@
 /**
  * Módulo AON (Adaptive Observability Negotiation)
- * Implementação completa do padrão AONP para PureCore Api
+ * Implementação completa do padrão AONP para AllasCode Platform
  * Inclui CrystalBox Mode - Observabilidade Interativa
  * 
  * @see docs/AONP.md - Especificação AON

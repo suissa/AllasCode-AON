@@ -1,6 +1,6 @@
 # Zero Runtime Dependencies for Core AON Protocol
 
-We decided to implement `@purecore/aon` with zero external runtime dependencies, relying exclusively on Node.js standard library primitives (`node:http`, `node:crypto`).
+We decided to implement `@allascode.institute/aon` with zero external runtime dependencies, relying exclusively on Node.js standard library primitives (`node:http`, `node:crypto`).
 
 ## Context & Problem
 
